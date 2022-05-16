@@ -4,24 +4,24 @@ declare(strict_types=1);
 namespace Lime\Sample\Controller\Index;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Framework\Controller\Result\Json;
-use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\View\Result\Page;
+use Magento\Framework\View\Result\PageFactory;
 /**
  * Class Index
  */
 class Index implements HttpGetActionInterface
 {
     /**
-     * @var JsonFactory
+     * @var PageFactory
      */
-    private $jsonFactory;
+    private $pageFactory;
 
     /**
-     * @param JsonFactory $jsonFactory
+     * @param PageFactory $pageFactory
      */
-    public function __construct(JsonFactory $jsonFactory)
+    public function __construct(PageFactory $pageFactory)
     {
-        $this->jsonFactory = $jsonFactory;
+        $this->pageFactory = $pageFactory;
     }
 
     /**
@@ -29,9 +29,9 @@ class Index implements HttpGetActionInterface
      */
     public function execute()
     {
-        /** @var Json $json */
-        $json = $this->jsonFactory->create();
+        /** @var Page $page */
+        $page = $this->pageFactory->create();
         
-        return $json->setData(['hello' => 'world']);
+        return $page;
     }
 }
